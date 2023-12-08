@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "final-project-apcsa-team-9_149c6e1a"
+        },
+        {
+            "type": "java",
+            "name": "CrossyRoad",
+            "request": "launch",
+            "mainClass": "CrossyRoad",
+            "projectName": "CSA-Project_581ff202"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "Main.java"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "CSA-Project_581ff202"
+        }
+    ]
+}

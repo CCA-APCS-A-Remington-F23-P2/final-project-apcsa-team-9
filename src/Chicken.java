@@ -14,7 +14,7 @@ public class Chicken extends MovingThing
       c = Color.WHITE;
       try
         {
-          URL url = getClass().getResourse("chicken.png");
+          URL url = new URL("https://assets.stickpng.com/images/580b57fcd9996e24bc43c2ab.png");
           image  = ImageIO.read(url);
         }
       catch (Exception e)
@@ -46,8 +46,20 @@ public class Chicken extends MovingThing
       }
     }
 
-    public void draw(Graphics window) {
-      window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+    // public void draw(Graphics window)
+    // {
+    //     draw(window, Color.WHITE);
+    // }
+
+    // public void draw(Graphics window, Color col)
+    // {
+    //     window.setColor(col);
+    //     window.fillRect(getX(), getY(), getWidth(), getHeight());
+    // }
+
+    public void draw( Graphics window )
+    {
+        window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
     }
 
     public String toString() {

@@ -1,7 +1,4 @@
 import java.awt.*;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -20,11 +17,11 @@ public class Background extends Canvas implements KeyListener, Runnable
   
   public Background()
   {
-    setBackground(Color.black);
+    setBackground(Color.BLUE);
 
     keys = new boolean[5];
 
-    chicken = new Chicken(100, 100, 50, 50, 1, 1);
+    chicken = new Chicken(200, 200, 50, 50, Color.WHITE, 1);
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -37,7 +34,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     paint(window);
   }
 
-  public void paint( Graphics window )
+  public void paint(Graphics window)
   {
 
     //set up the double buffering to make the game animation nice and smooth
@@ -62,7 +59,9 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
     //bullets hit alien
-
+    graphToBack.setColor(Color.YELLOW);
+    // graphToBack.fillRect(0,0,800,600);
+    chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
@@ -180,4 +179,3 @@ public class Background extends Canvas implements KeyListener, Runnable
     }
   }
 }
-

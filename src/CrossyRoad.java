@@ -9,7 +9,7 @@ public class CrossyRoad extends JFrame
   public CrossyRoad()
   {
     super("CrossyRoad");
-    setSize(WIDTH+200,HEIGHT+200);
+    setSize(WIDTH,HEIGHT);
 
     Background theGame = new Background();
     ((Component)theGame).setFocusable(true);
