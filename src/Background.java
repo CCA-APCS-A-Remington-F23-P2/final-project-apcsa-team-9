@@ -21,7 +21,7 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     keys = new boolean[5];
 
-    chicken = new Chicken(200, 200, 50, 50, Color.WHITE, 1);
+    chicken = new Chicken(200, 200, 30, 30, 40);
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -49,18 +49,31 @@ public class Background extends Canvas implements KeyListener, Runnable
     //we will draw all changes on the background image
     Graphics graphToBack = back.createGraphics();
 
-    graphToBack.setColor(Color.BLUE);
-
-    if (keys[0]) chicken.move("LEFT");
-    else if(keys[1]) chicken.move("RIGHT");
-    else if(keys[2]) chicken.move("UP");
-    else if(keys[3]) chicken.move("DOWN");
-    else if(keys[4]) chicken.move("SPACE");
+    if (keys[0]) {
+      chicken.move("LEFT");
+      keys[0] = false;
+    }
+    else if (keys[1]) {
+      chicken.move("RIGHT");
+      keys[1] = false;
+    }
+    else if (keys[2]) {
+      chicken.move("UP");
+      keys[2] = false;
+    }
+    else if (keys[3]) {
+      chicken.move("DOWN");
+      keys[3] = false;
+    }
+    if (keys[4]) {
+      chicken.move("SPACE");
+      keys[4] = false;
+    }
 
     //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
     //bullets hit alien
-    graphToBack.setColor(Color.YELLOW);
-    // graphToBack.fillRect(0,0,800,600);
+    graphToBack.setColor(Color.BLACK);
+    graphToBack.fillRect(0,0,600,800);
     chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CrossyRoad",
+            "request": "launch",
+            "mainClass": "CrossyRoad",
+            "projectName": "final-project-apcsa-team-9_149c6e1a"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",

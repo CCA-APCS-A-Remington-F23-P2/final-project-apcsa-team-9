@@ -8,14 +8,14 @@ public class Chicken extends MovingThing
     private int speed;
     private Image image;
 
-    public Chicken(int x, int y, int w, int h, Color c, int s) {
+    public Chicken(int x, int y, int w, int h, int s) {
       super(x, y, w, h);
       speed = s;
-      c = Color.WHITE;
       try
         {
           URL url = new URL("https://assets.stickpng.com/images/580b57fcd9996e24bc43c2ab.png");
-          image  = ImageIO.read(url);
+          // URL url = getClass().getResource("Images\\Image.jpg"); 
+          image = ImageIO.read(url);
         }
       catch (Exception e)
         {
@@ -32,19 +32,37 @@ public class Chicken extends MovingThing
     }
 
     public void move(String direction) {
+
       if (direction.equals("LEFT")) {
         setX(getX() - speed);
       }
-      if (direction.equals("RIGHT")) {
+      else if (direction.equals("RIGHT")) {
         setX(getX() + speed);
       }
-      if (direction.equals("UP")) {
+      else if (direction.equals("UP")) {
         setY(getY() - speed);
       }
-      if (direction.equals("DOWN")) {
+      else if (direction.equals("DOWN")) {
         setY(getY() + speed);
       }
     }
+
+    // public void moveAndDraw(String direction, Graphics window) {
+    //   draw(window, Color.BLACK);
+    //   if (direction.equals("LEFT")) {
+    //     setX(getX() - speed);
+    //   }
+    //   if (direction.equals("RIGHT")) {
+    //     setX(getX() + speed);
+    //   }
+    //   if (direction.equals("UP")) {
+    //     setY(getY() - speed);
+    //   }
+    //   if (direction.equals("DOWN")) {
+    //     setY(getY() + speed);
+    //   }
+    //   draw(window);
+    // }
 
     // public void draw(Graphics window)
     // {
@@ -57,7 +75,7 @@ public class Chicken extends MovingThing
     //     window.fillRect(getX(), getY(), getWidth(), getHeight());
     // }
 
-    public void draw( Graphics window )
+    public void draw(Graphics window)
     {
         window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
     }
