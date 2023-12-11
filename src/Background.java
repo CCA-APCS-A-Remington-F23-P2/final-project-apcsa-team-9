@@ -14,6 +14,8 @@ public class Background extends Canvas implements KeyListener, Runnable
   private BufferedImage back;
   private boolean[] keys;
   private Chicken chicken;
+  //private ArrayList<Road> roads;
+  //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
   {
