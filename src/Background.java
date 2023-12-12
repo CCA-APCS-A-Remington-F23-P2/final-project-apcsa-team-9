@@ -63,11 +63,11 @@ public class Background extends Canvas implements KeyListener, Runnable
       keys[1] = false;
     }
     else if (keys[2]) {
-      chicken.move("UP");
+      roads.move("DOWN");
       keys[2] = false;
     }
     else if (keys[3]) {
-      chicken.move("DOWN");
+      roads.move("UP");
       keys[3] = false;
     }
     if (keys[4]) {

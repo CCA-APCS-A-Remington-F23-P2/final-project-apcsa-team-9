@@ -106,6 +106,35 @@ public class Road {
         }
     }
 
+    public static String randomDirection()
+    {
+        if((int)(Math.random()*2)==0) return "LEFT";
+        return "RIGHT";
+    }
+
+    public void move(String direction)
+    {
+        if(direction.equals("DOWN"))
+        {
+            yPos+=40;
+            for(int i=0;i<cars.size();i++)
+            {
+                Car c=cars.get(i);
+                c.setY(c.getY()+40);
+            }
+        }
+        if(direction.equals("UP"))
+        {
+            yPos-=40;
+            for(int i=0;i<cars.size();i++)
+            {
+                Car c=cars.get(i);
+                c.setY(c.getY()-40);
+            }
+        }
+        
+    }
+
     public void draw(Graphics window) 
     {
         window.setColor(getColor());
