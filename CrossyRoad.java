@@ -1,15 +1,20 @@
 import javax.swing.*;
+
+import static Constants.Constants.GameConstants.*;
+
 import java.awt.*;
 
 public class CrossyRoad extends JFrame 
 {
-  private static final int WIDTH = 600;
-  private static final int HEIGHT = 800;
 
   public CrossyRoad()
   {
     super("CrossyRoad");
+<<<<<<< Updated upstream:CrossyRoad.java
     setSize(WIDTH+200,HEIGHT+200);
+=======
+    setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+>>>>>>> Stashed changes:src/CrossyRoad.java
 
     Background theGame = new Background();
     ((Component)theGame).setFocusable(true);

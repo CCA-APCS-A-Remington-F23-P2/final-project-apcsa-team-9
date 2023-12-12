@@ -17,6 +17,12 @@ public class Background extends Canvas implements KeyListener, Runnable
   private BufferedImage back;
   private boolean[] keys;
   private Chicken chicken;
+<<<<<<< Updated upstream:Background.java
+=======
+  private Road roadTestOne;
+  private Car carTestOne;
+  private ArrayList<Road> roads;
+>>>>>>> Stashed changes:src/Background.java
   
   public Background()
   {
@@ -24,7 +30,19 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     keys = new boolean[5];
 
+<<<<<<< Updated upstream:Background.java
     chicken = new Chicken(100, 100, 50, 50, 1, 1);
+=======
+    chicken = new Chicken(260, 645, 30, 30, 40);
+    roadTestOne = new Road(0,100,Color.blue);
+    carTestOne = new Car(100,80,50,50,2);
+    roads = new ArrayList<Road>();
+    
+    for(int i = 0; i < 800; i += 40)
+    {
+      roads.add(new Road(0, i, randomColor()));
+    }
+>>>>>>> Stashed changes:src/Background.java
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -45,7 +63,7 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     //take a snap shop of the current screen and same it as an image
     //that is the exact same width and height as the current screen
-    if (back==null)
+    if (back == null)
       back = (BufferedImage)(createImage(getWidth(),getHeight()));
 
     //create a graphics reference to the back ground image
@@ -60,9 +78,24 @@ public class Background extends Canvas implements KeyListener, Runnable
     else if(keys[3]) chicken.move("DOWN");
     else if(keys[4]) chicken.move("SPACE");
 
+    carTestOne.move();
+
     //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
+<<<<<<< Updated upstream:Background.java
     //bullets hit alien
 
+=======
+
+    graphToBack.setColor(Color.BLACK);
+    graphToBack.fillRect(0,0,600,800);
+    
+    for(Road r : roads)
+    {
+      r.draw(graphToBack);
+    }
+    carTestOne.draw(graphToBack);
+    chicken.draw(graphToBack);
+>>>>>>> Stashed changes:src/Background.java
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
@@ -72,14 +105,14 @@ public class Background extends Canvas implements KeyListener, Runnable
     setVisible(true);
   }
 
-  public void displayScore(Graphics window, int x, int y)
+  private void displayScore(Graphics window, int x, int y)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,24));
     window.clearRect(x,y-40,200,80);
     window.setColor(Color.WHITE);
     // window.drawString("Score: "+score, x, y);
   }
-  public void displayLives(Graphics window, int x, int y)
+  private void displayLives(Graphics window, int x, int y)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,24));
     window.clearRect(x,y-40,200,80);
@@ -87,7 +120,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     // window.drawString("Lives: "+lives, x, y);
   }
 
-  public void displayLifeLostScreen(Graphics window)
+  private void displayLifeLostScreen(Graphics window)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     window.clearRect(0,0,800,600);
@@ -95,7 +128,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     // window.drawString("you lost a life!"+" lives remaining: "+lives+"\n press r to resume", 400, 300);
   }
 
-  public void displayGameLostScreen(Graphics window)
+  private void displayGameLostScreen(Graphics window)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     window.clearRect(0,0,800,600);
@@ -103,13 +136,19 @@ public class Background extends Canvas implements KeyListener, Runnable
     // window.drawString("you lost!! your final score was: "+score,400,300);
   }
 
-  public void displayGameWonScreen(Graphics window)
+  private void displayGameWonScreen(Graphics window)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     window.clearRect(0,0,800,600);
     window.setColor(Color.WHITE);
     // window.drawString("you won!! your final score was: "+score,400,300);
   }
+
+  private Color randomColor()
+  {
+    return new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+  }
+
   public void keyPressed(KeyEvent e)
   {
     if (e.getKeyCode() == KeyEvent.VK_LEFT)
