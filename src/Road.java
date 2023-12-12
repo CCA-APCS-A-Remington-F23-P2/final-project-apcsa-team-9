@@ -48,7 +48,14 @@ public class Road {
         color = col;
     }
 
-    public void draw(Graphics window) {
+    public static Color randomColor()
+    {
+        return new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+    }
+
+    public void draw(Graphics window) 
+    {
+        window.setColor(getColor());
         window.fillRect(getX(), getY(), getWidth(), getHeight());
     }
 }
