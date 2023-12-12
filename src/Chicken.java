@@ -36,16 +36,16 @@ public class Chicken extends MovingThing
 
     public void move(String direction) {
 
-      if (direction.equals("LEFT")) {
+      if (direction.equals("LEFT") && getX()>=40) {
         setX(getX() - speed);
       }
-      else if (direction.equals("RIGHT")) {
+      else if (direction.equals("RIGHT") && getX()<=520) {
         setX(getX() + speed);
       }
-      else if (direction.equals("UP")) {
+      else if (direction.equals("UP") && getY()>=40) {
         setY(getY() - speed);
       }
-      else if (direction.equals("DOWN")) {
+      else if (direction.equals("DOWN") && getY()<=720) {
         setY(getY() + speed);
       }
     }
