@@ -13,9 +13,12 @@ public class Chicken extends MovingThing
       speed = s;
       try
         {
+          //first url is broken
           URL url = new URL("https://assets.stickpng.com/images/580b57fcd9996e24bc43c2ab.png");
+          URL altUrl=new URL("https://th.bing.com/th/id/R.ec20146cb6f7741e87e26d85d6f9f8ae?rik=IfSCXsabdWVG%2bA&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f2%2fChicken-Transparent-PNG.png&ehk=oFy%2fnLaUOdXRAzGWMJKkyv8KlW81PuGj10FaLH93X2E%3d&risl=&pid=ImgRaw&r=0");
           // URL url = getClass().getResource("Images\\Image.jpg"); 
-          image = ImageIO.read(url);
+          image = ImageIO.read(altUrl);
+
         }
       catch (Exception e)
         {
@@ -33,16 +36,16 @@ public class Chicken extends MovingThing
 
     public void move(String direction) {
 
-      if (direction.equals("LEFT")) {
+      if (direction.equals("LEFT") && getX()>=40) {
         setX(getX() - speed);
       }
-      else if (direction.equals("RIGHT")) {
+      else if (direction.equals("RIGHT") && getX()<=520) {
         setX(getX() + speed);
       }
-      else if (direction.equals("UP")) {
+      else if (direction.equals("UP") && getY()>=40) {
         setY(getY() - speed);
       }
-      else if (direction.equals("DOWN")) {
+      else if (direction.equals("DOWN") && getY()<=720) {
         setY(getY() + speed);
       }
     }

@@ -14,7 +14,8 @@ public class Background extends Canvas implements KeyListener, Runnable
   private BufferedImage back;
   private boolean[] keys;
   private Chicken chicken;
-  //private ArrayList<Road> roads;
+  private Car carTestOne;
+  private Roads roads;
   //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
@@ -23,7 +24,9 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     keys = new boolean[5];
 
-    chicken = new Chicken(200, 200, 30, 30, 40);
+    chicken = new Chicken(200, 200, 40, 40, 40);
+    carTestOne=new Car(100,100,50,30,2);
+    roads=new Roads();
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -76,6 +79,11 @@ public class Background extends Canvas implements KeyListener, Runnable
     //bullets hit alien
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0,0,600,800);
+    
+    roads.generateCars();
+    roads.cleanUpEdges();
+    roads.draw(graphToBack);
+    carTestOne.draw(graphToBack);
     chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
@@ -149,6 +157,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     repaint();
   }
 
+  //keyreleased probably not needed, see lines 56-59
   public void keyReleased(KeyEvent e)
   {
     if (e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -185,7 +194,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     {
       while(true)
       {
-        Thread.currentThread().sleep(5);
+        Thread.currentThread().sleep(17);
         repaint();
 
       }
