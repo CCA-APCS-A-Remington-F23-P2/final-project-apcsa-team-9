@@ -75,21 +75,40 @@ public class Road {
         return new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
     }
 
+    public boolean carCollides(MovingThing other) {
+        for (int i = 0; i < cars.size(); i++) {
+            if (cars.get(i).didCollide(other)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     
     //adds cars to our road randomly
     public void generateCars()
     {
-        count++;
-        if(count==1)
+        if(drivingDirection.equals("LEFT"))
         {
-            timeSinceLastCarAdded=System.nanoTime();
-            timeToExceed=(long)(Math.random()*2000000000)+2000000000;
+            int initialCarPos=600;
+            while(initialCarPos<=1200)
+            {
+                int temp=100+(int)(Math.random()*roadSpeed*100);
+                cars.add(new Car(initialCarPos,yPos+5,40,30,roadSpeed));
+                initialCarPos+=temp;
+            }
+
         }
-        if(System.nanoTime()-timeSinceLastCarAdded>timeToExceed)
+        else if(drivingDirection.equals("RIGHT"))
         {
-            if(drivingDirection.equals("LEFT")) cars.add(new Car(600,yPos,50,30, roadSpeed));
-            else cars.add(new Car(0,yPos,50,30, roadSpeed));
-            count=0;
+            int initialCarPos=0;
+            while(initialCarPos>=-600)
+            {
+                int temp=100+(int)(Math.random()*roadSpeed*100);
+                cars.add(new Car(initialCarPos,yPos+5,40,30,roadSpeed));
+                initialCarPos-=temp;
+            }
+
         }
     }
 
@@ -98,11 +117,23 @@ public class Road {
     {
         for(int i=0;i<cars.size();i++)
         {
-            if(cars.get(i).getX()<-20 || cars.get(i).getX()>620)
+            if(drivingDirection.equals("LEFT"))
             {
-                cars.remove(i);
-                i--;
+                if(cars.get(i).getX()<-20)
+                {
+                    cars.get(i).setX(800);
+                }
+
             }
+            else if(drivingDirection.equals("RIGHT"))
+            {
+                if(cars.get(i).getX()>620)
+                {
+                    cars.get(i).setX(-200);
+                }
+
+            }
+            
         }
     }
 

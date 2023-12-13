@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class MovingThing implements Moveable, Collidable<MovingThing>
+public abstract class MovingThing implements Moveable, Collidable<Roads>
 {
   private int xPos;
   private int yPos;

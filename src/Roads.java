@@ -33,7 +33,9 @@ public class Roads {
                 Road r=roads.get(i);
                 r.move("DOWN");
             }
-            roads.add(0,new Road(0,0,Road.randomColor(),Road.randomDirection()));
+            Road roadToAdd=new Road(0,0,Road.randomColor(),Road.randomDirection());
+            roadToAdd.generateCars();
+            roads.add(0,roadToAdd);
         }
         else if(direction.equals("UP"))
         {
@@ -43,7 +45,9 @@ public class Roads {
                 Road r=roads.get(i);
                 r.move("UP");
             }
-            roads.add(new Road(0,760,Road.randomColor(),Road.randomDirection()));
+            Road roadToAdd=new Road(0,760,Road.randomColor(),Road.randomDirection());
+            roadToAdd.generateCars();
+            roads.add(roadToAdd);
 
         }
     }
@@ -55,6 +59,10 @@ public class Roads {
             Road r=roads.get(i);
             r.generateCars();
         }
+    }
+
+    public ArrayList<Road> getList() {
+        return roads;
     }
 
     //removes cars once they move off the screen

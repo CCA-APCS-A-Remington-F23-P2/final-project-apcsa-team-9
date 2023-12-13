@@ -27,6 +27,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     chicken = new Chicken(200, 200, 40, 40, 40);
     carTestOne=new Car(100,100,50,30,2);
     roads=new Roads();
+    roads.generateCars();
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -41,6 +42,7 @@ public class Background extends Canvas implements KeyListener, Runnable
 
   public void paint(Graphics window)
   {
+
 
     //set up the double buffering to make the game animation nice and smooth
     Graphics2D twoDGraph = (Graphics2D)window;
@@ -63,11 +65,13 @@ public class Background extends Canvas implements KeyListener, Runnable
       keys[1] = false;
     }
     else if (keys[2]) {
-      roads.move("DOWN");
+      //roads.move("DOWN");
+      chicken.move("UP");
       keys[2] = false;
     }
     else if (keys[3]) {
-      roads.move("UP");
+      //roads.move("UP");
+      chicken.move("DOWN");
       keys[3] = false;
     }
     if (keys[4]) {
@@ -79,8 +83,13 @@ public class Background extends Canvas implements KeyListener, Runnable
     //bullets hit alien
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0,0,600,800);
+
+    for (int i = 0; i < roads.getList().size(); i++) {
+      if (roads.getList().get(i).carCollides(chicken)) {
+        //ADD IN THE YOU DIE SCREEN CUZ U DO
+      }
+    }
     
-    roads.generateCars();
     roads.cleanUpEdges();
     roads.draw(graphToBack);
     carTestOne.draw(graphToBack);
