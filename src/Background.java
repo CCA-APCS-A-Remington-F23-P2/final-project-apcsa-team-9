@@ -16,6 +16,7 @@ public class Background extends Canvas implements KeyListener, Runnable
   private Chicken chicken;
   private Car carTestOne;
   private Roads roads;
+  private boolean gamePaused=false;
   //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
@@ -24,7 +25,7 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     keys = new boolean[5];
 
-    chicken = new Chicken(200, 200, 40, 40, 40);
+    chicken = new Chicken(285, 765-80-120, 30, 30, 40);
     carTestOne=new Car(100,100,50,30,2);
     roads=new Roads();
     roads.generateCars();
@@ -55,6 +56,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     //create a graphics reference to the back ground image
     //we will draw all changes on the background image
     Graphics graphToBack = back.createGraphics();
+     
 
     if (keys[0]) {
       chicken.move("LEFT");
@@ -75,18 +77,27 @@ public class Background extends Canvas implements KeyListener, Runnable
       keys[3] = false;
     }
     if (keys[4]) {
-      chicken.move("SPACE");
-      keys[4] = false;
+      reset();
+      keys[4]=false;
     }
+    
 
     //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
     //bullets hit alien
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0,0,600,800);
+    if(gamePaused)
+    {
+      displayGameLostScreen(graphToBack);
+      twoDGraph.drawImage(back, null, 0, 0);
+      return;
+    }
 
     for (int i = 0; i < roads.getList().size(); i++) {
       if (roads.getList().get(i).carCollides(chicken)) {
         //ADD IN THE YOU DIE SCREEN CUZ U DO
+        displayGameLostScreen(graphToBack);
+        gamePaused=true;
       }
     }
     
@@ -99,8 +110,13 @@ public class Background extends Canvas implements KeyListener, Runnable
 
   public void reset()
   {
-    setBackground(Color.black);
+    setBackground(Color.BLUE);
+    chicken = new Chicken(285, 765-80-120, 30, 30, 40);
+    carTestOne=new Car(100,100,50,30,2);
+    roads=new Roads();
+    roads.generateCars();
     setVisible(true);
+    gamePaused=false;
   }
 
   public void displayScore(Graphics window, int x, int y)
@@ -129,9 +145,9 @@ public class Background extends Canvas implements KeyListener, Runnable
   public void displayGameLostScreen(Graphics window)
   {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
-    window.clearRect(0,0,800,600);
+    window.clearRect(0,0,600,800);
     window.setColor(Color.WHITE);
-    // window.drawString("you lost!! your final score was: "+score,400,300);
+    window.drawString("you lost!! your final score was: //100",200,300);
   }
 
   public void displayGameWonScreen(Graphics window)
@@ -159,9 +175,9 @@ public class Background extends Canvas implements KeyListener, Runnable
     {
       keys[3] = true;
     }
-    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+    if (e.getKeyCode() == KeyEvent.VK_R && gamePaused)
     {
-      keys[4] = true;
+      keys[4]=true;
     }
     repaint();
   }
@@ -185,9 +201,9 @@ public class Background extends Canvas implements KeyListener, Runnable
     {
       keys[3] = false;
     }
-    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+    if (e.getKeyCode() == KeyEvent.VK_R && gamePaused)
     {
-      keys[4] = false;
+      keys[4]=true;
     }
     repaint();
   }
