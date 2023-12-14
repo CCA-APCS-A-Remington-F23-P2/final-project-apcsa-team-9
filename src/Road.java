@@ -3,14 +3,13 @@ import java.awt.Graphics;
 import java.util.*;
 
 public class Road extends Rectangle{
-    private int width;
-    private int height;
-    private int xPos;
-    private int yPos;
+    //color of the road
     private Color color;
+    //how fast the cars move on the road
     private int roadSpeed;
     //has value either "LEFT" or "RIGHT", indicates direction the cars on this road travel in
     private String drivingDirection;
+    //keeps track of the cars on the road
     private ArrayList<Car> cars=new ArrayList<Car>();
 
     public Road(int x, int y, Color col, String drivingDirection) {
@@ -47,7 +46,8 @@ public class Road extends Rectangle{
     public void setColor(Color col) {
         color = col;
     }
-
+    
+    //generates a random RGB color
     public static Color randomColor()
     {
         return new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
@@ -121,29 +121,29 @@ public class Road extends Rectangle{
         return "RIGHT";
     }
 
-    //not used
-    public void move(String direction)
-    {
-        if(direction.equals("DOWN"))
-        {
-            yPos+=40;
-            for(int i=0;i<cars.size();i++)
-            {
-                Car c=cars.get(i);
-                c.setY(c.getY()+40);
-            }
-        }
-        if(direction.equals("UP"))
-        {
-            yPos-=40;
-            for(int i=0;i<cars.size();i++)
-            {
-                Car c=cars.get(i);
-                c.setY(c.getY()-40);
-            }
-        }
+    // //not used as of now, may be used later
+    // public void move(String direction)
+    // {
+    //     if(direction.equals("DOWN"))
+    //     {
+    //         setY(getY()+40);
+    //         for(int i=0;i<cars.size();i++)
+    //         {
+    //             Car c=cars.get(i);
+    //             c.setY(c.getY()+40);
+    //         }
+    //     }
+    //     if(direction.equals("UP"))
+    //     {
+    //         setY(getY()-40);
+    //         for(int i=0;i<cars.size();i++)
+    //         {
+    //             Car c=cars.get(i);
+    //             c.setY(c.getY()-40);
+    //         }
+    //     }
         
-    }
+    // }
 
     //draws the road and the cars on the road
     public void draw(Graphics window) 

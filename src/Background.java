@@ -1,11 +1,11 @@
 import java.awt.*;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
 public class Background extends Canvas implements KeyListener, Runnable
@@ -14,7 +14,6 @@ public class Background extends Canvas implements KeyListener, Runnable
   private BufferedImage back;
   private boolean[] keys;
   private Chicken chicken;
-  private Car carTestOne;
   private Roads roads;
   private boolean gamePaused=false;
   //^^ Incorporate the roads and draw them on the screen later
@@ -26,7 +25,6 @@ public class Background extends Canvas implements KeyListener, Runnable
     keys = new boolean[5];
 
     chicken = new Chicken(285, 765-80-120, 30, 30, 40);
-    carTestOne=new Car(100,100,50,30,2);
     roads=new Roads();
     roads.generateCars();
 
@@ -103,7 +101,6 @@ public class Background extends Canvas implements KeyListener, Runnable
     
     roads.cleanUpEdges();
     roads.draw(graphToBack);
-    carTestOne.draw(graphToBack);
     chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
@@ -112,7 +109,6 @@ public class Background extends Canvas implements KeyListener, Runnable
   {
     setBackground(Color.BLUE);
     chicken = new Chicken(285, 765-80-120, 30, 30, 40);
-    carTestOne=new Car(100,100,50,30,2);
     roads=new Roads();
     roads.generateCars();
     setVisible(true);
