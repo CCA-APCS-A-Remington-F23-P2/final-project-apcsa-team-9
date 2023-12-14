@@ -83,10 +83,13 @@ public abstract class MovingThing implements Moveable, Collidable<MovingThing>
 
   public boolean didCollide(MovingThing other)
   {
+    int offset = 10;
+    if (other instanceof Car) offset = 10;
+
     if(this.getY()+this.getHeight()<other.getY() || 
       this.getY()>other.getY()+other.getHeight() ||
-      this.getX()+this.getWidth()<other.getX() ||
-      this.getX()>other.getX()+other.getWidth()) return false;
+      this.getX()+this.getWidth()<other.getX()+offset ||
+      this.getX()+offset>other.getX()+other.getWidth()) return false;
     return true;
   }
 
