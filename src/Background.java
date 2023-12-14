@@ -15,6 +15,7 @@ public class Background extends Canvas implements KeyListener, Runnable
   private boolean[] keys;
   private Chicken chicken;
   private Roads roads;
+  private GrassPatch grass;
   private boolean gamePaused=false;
   //^^ Incorporate the roads and draw them on the screen later
   
@@ -27,6 +28,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     chicken = new Chicken(285, 765-80-120, 30, 30, 40);
     roads=new Roads();
     roads.generateCars();
+
 
     this.addKeyListener(this);
     new Thread(this).start();
