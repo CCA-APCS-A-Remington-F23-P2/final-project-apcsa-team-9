@@ -9,8 +9,17 @@ public class Roads {
         for(int i=0;i<=760;i+=40)
         {
             int rand=(int)(Math.random()*2);
-            if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT"));
+            if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
             else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
+        }
+        for(int i=0;i<roads.size()-1;i++)
+        {
+            Road roadOne=roads.get(i);
+            Road roadTwo=roads.get(i+1);
+            if(roadOne.getDrivingDirection().equals(roadTwo.getDrivingDirection()))
+            {
+                while(roadOne.getRoadSpeed()==roadTwo.getRoadSpeed()) roadTwo.setRoadSpeed(1+(int)(Math.random()*3));
+            }
         }
     }
 
