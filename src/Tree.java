@@ -3,22 +3,22 @@ import java.awt.*;
 import java.net.URL;
 
 
-public class Rock extends MovingThing{
+public class Tree extends MovingThing{
     private int speed;
     private Image image; 
 
-    public Rock(int x, int y, int w, int h){
+    public Tree(int x, int y, int w, int h){
         super(x,y,w,h);
         speed = 0; 
         try
         {
             //broken link
-          URL altUrl=new URL("https://static.wikia.nocookie.net/crossyroad/images/b/b8/Moonrock.png/revision/latest?cb=20220522224223");
+          URL altUrl=new URL("https://th.bing.com/th/id/OIP.R55cOpQhtkAs6R2wtD0QxAHaHa?rs=1&pid=ImgDetMain");
           image  = ImageIO.read(altUrl);
         }
-      catch (Exception e)
+        catch (Exception e)
         {
-          System.out.println("Error loading rock image");
+          System.out.println("Error loading tree image");
         }
     }
 

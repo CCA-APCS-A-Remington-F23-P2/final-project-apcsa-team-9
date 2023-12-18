@@ -2,15 +2,22 @@ import java.util.*;
 import java.awt.*;
 public class Roads {
     private ArrayList<Road> roads;
+    private ArrayList<Integer> yPosWithoutRoad;
 
     public Roads()
     {
         roads=new ArrayList<Road>();
+        yPosWithoutRoad=new ArrayList<Integer>();
         for(int i=0;i<=760;i+=40)
         {
-            int rand=(int)(Math.random()*2);
-            if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
-            else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
+            if((int)(Math.random()*5)<=2)
+            {
+                int rand=(int)(Math.random()*2);
+                if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
+                else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
+            }
+            else yPosWithoutRoad.add(i);
+            
         }
         for(int i=0;i<roads.size()-1;i++)
         {
@@ -21,6 +28,11 @@ public class Roads {
                 while(roadOne.getRoadSpeed()==roadTwo.getRoadSpeed()) roadTwo.setRoadSpeed(1+(int)(Math.random()*3));
             }
         }
+    }
+
+    public ArrayList<Integer> getyPosWithoutRoad()
+    {
+        return yPosWithoutRoad;
     }
 
     public void addRoad(Road r)

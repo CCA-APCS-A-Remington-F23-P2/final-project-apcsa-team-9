@@ -1,4 +1,4 @@
-public class Rectangle {
+public class Rectangle{
     private int xPos;
     private int yPos;
     private int width;
@@ -41,7 +41,7 @@ public class Rectangle {
         width=w;
     }
 
-    public void getHeight(int h) {
+    public void setHeight(int h) {
         height=h;
     }
 
