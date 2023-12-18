@@ -20,6 +20,11 @@ public class Grasslane extends Rectangle{
         color = col;
     }
 
+    public ArrayList<MovingThing> getObstacles()
+    {
+        return obstacles;
+    }
+
     
 
     public void generateObstacles()

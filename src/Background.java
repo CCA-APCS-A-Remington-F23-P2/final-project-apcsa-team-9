@@ -59,20 +59,20 @@ public class Background extends Canvas implements KeyListener, Runnable
     Graphics graphToBack = back.createGraphics();
      
 
-    if (keys[0]) {
+    if (keys[0] && chicken.moveIsLegal(grasslanes, "LEFT")) {
       chicken.move("LEFT");
       keys[0] = false;
     }
-    else if (keys[1]) {
+    else if (keys[1] && chicken.moveIsLegal(grasslanes, "RIGHT")) {
       chicken.move("RIGHT");
       keys[1] = false;
     }
-    else if (keys[2]) {
+    else if (keys[2] && chicken.moveIsLegal(grasslanes, "UP")) {
       //roads.move("DOWN");
       chicken.move("UP");
       keys[2] = false;
     }
-    else if (keys[3]) {
+    else if (keys[3] && chicken.moveIsLegal(grasslanes, "DOWN")) {
       //roads.move("UP");
       chicken.move("DOWN");
       keys[3] = false;

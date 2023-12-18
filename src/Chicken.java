@@ -2,6 +2,7 @@ import java.io.File;
 import java.net.URL;
 import java.awt.*;
 import javax.imageio.ImageIO;
+import java.util.*;
 
 public class Chicken extends MovingThing
   {
@@ -48,6 +49,24 @@ public class Chicken extends MovingThing
       else if (direction.equals("DOWN") && getY()<=720) {
         setY(getY() + speed);
       }
+    }
+
+    public boolean moveIsLegal(Grasslanes grasslanes, String direction)
+    {
+      Chicken clone=new Chicken(getX(),getY(),getWidth(),getHeight(),getSpeed());
+      clone.move(direction);
+      ArrayList<Grasslane> grasslaneArray=grasslanes.getGrasslanes();
+      for(int i=0;i<grasslaneArray.size();i++)
+      {
+        Grasslane g=grasslaneArray.get(i);
+        for(int j=0;j<g.getObstacles().size();j++)
+        {
+          if(clone.didCollide(g.getObstacles().get(j))) return false;
+        }
+      }
+      return true;
+
+
     }
 
     // public void moveAndDraw(String direction, Graphics window) {
