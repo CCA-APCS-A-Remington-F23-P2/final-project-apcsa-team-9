@@ -7,16 +7,25 @@ public class Car extends MovingThing
   {
     private int speed;
     private Image image;
+    private int randNum; 
 
     public Car(int x, int y, int w, int h, int s) {
       super(x, y, w, h);
       speed = s;
+      randNum = (int)(Math.random()*2) +1; 
       try
         {
             //broken link
           URL url = new URL("https://assets.stickpng.com/images/580b57fcd9996e24bc43c2ab.png");
-          URL altUrl=new URL("https://th.bing.com/th/id/R.bbcabe3c054aca53b4ca5690aae822b9?rik=4JcYdpnX2qWNaA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fcartoon-car-transparent-background%2fcartoon-car-transparent-background-4.png&ehk=S1bsnvBVQt%2bAv50Fp8WFMSQHw8HoSWfwcK4SqYJAitc%3d&risl=&pid=ImgRaw&r=0");
-          image  = ImageIO.read(altUrl);
+          URL car1=new URL("https://static.wikia.nocookie.net/crossyroad/images/8/83/11870.png/revision/latest?cb=20151216012703");
+          URL car2=new URL("https://static.wikia.nocookie.net/crossyroad/images/2/23/Red_Truck.png/revision/latest?cb=20150128204727");
+          if(randNum == 1){
+            image  = ImageIO.read(car1);
+          }
+          else if(randNum == 2){
+            image  = ImageIO.read(car2);
+          }
+          
         }
       catch (Exception e)
         {

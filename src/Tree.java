@@ -13,7 +13,7 @@ public class Tree extends MovingThing{
         try
         {
             //broken link
-          URL altUrl=new URL("https://th.bing.com/th/id/OIP.R55cOpQhtkAs6R2wtD0QxAHaHa?rs=1&pid=ImgDetMain");
+          URL altUrl=new URL("https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/Simple_Tree_Clipart.png/640px-Simple_Tree_Clipart.png");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
