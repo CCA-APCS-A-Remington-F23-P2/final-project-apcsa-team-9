@@ -48,8 +48,5 @@ public class Grasslanes {
             r.draw(window);
         }
     }
-
-
-
 }
 

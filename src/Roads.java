@@ -13,8 +13,10 @@ public class Roads {
             if((int)(Math.random()*5)<=2)
             {
                 int rand=(int)(Math.random()*2);
-                if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
-                else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
+                // if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
+                // else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
+                if(rand==0) roads.add(new Road(0,i,Color.GRAY,"LEFT")); 
+                else roads.add(new Road(0,i,Color.GRAY,"RIGHT"));
             }
             else yPosWithoutRoad.add(i);
             
