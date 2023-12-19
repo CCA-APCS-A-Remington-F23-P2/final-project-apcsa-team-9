@@ -14,6 +14,7 @@ public class Grasslanes {
         {
             grasslanes.get(i).generateObstacles();
         }
+        BlankLane b = new BlankLane(0, 725);
     }
 
     public void addGrasslane(Grasslane r)

@@ -10,13 +10,11 @@ public class Roads {
         roads=new ArrayList<Road>();
         yPosWithoutRoad=new ArrayList<Integer>();
         yPosWithRoad=new ArrayList<Integer>();
-        for(int i=0;i<=760;i+=40)
+        for(int i=0;i<=720;i+=40)
         {
             if((int)(Math.random()*5)<=2)
             {
                 int rand=(int)(Math.random()*2);
-                // if(rand==0) roads.add(new Road(0,i,Road.randomColor(),"LEFT")); 
-                // else roads.add(new Road(0,i,Road.randomColor(),"RIGHT"));
                 if(rand==0) roads.add(new Road(0,i,Color.GRAY,"LEFT")); 
                 else roads.add(new Road(0,i,Color.GRAY,"RIGHT"));
                 yPosWithRoad.add(i);
@@ -54,34 +52,6 @@ public class Roads {
     {
         return roads;
     }
-    // public void move(String direction)
-    // {
-    //     if(direction.equals("DOWN"))
-    //     {
-    //         roads.remove(roads.size()-1);
-    //         for(int i=0;i<roads.size();i++)
-    //         {
-    //             Road r=roads.get(i);
-    //             r.move("DOWN");
-    //         }
-    //         Road roadToAdd=new Road(0,0,Road.randomColor(),Road.randomDirection());
-    //         roadToAdd.generateCars();
-    //         roads.add(0,roadToAdd);
-    //     }
-    //     else if(direction.equals("UP"))
-    //     {
-    //         roads.remove(0);
-    //         for(int i=0;i<roads.size();i++)
-    //         {
-    //             Road r=roads.get(i);
-    //             r.move("UP");
-    //         }
-    //         Road roadToAdd=new Road(0,760,Road.randomColor(),Road.randomDirection());
-    //         roadToAdd.generateCars();
-    //         roads.add(roadToAdd);
-
-    //     }
-    // }
 
     public void generateCars()
     {
