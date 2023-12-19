@@ -10,7 +10,7 @@ public class Roads {
         roads=new ArrayList<Road>();
         yPosWithoutRoad=new ArrayList<Integer>();
         yPosWithRoad=new ArrayList<Integer>();
-        for(int i=0;i<=720;i+=40)
+        for(int i=40;i<=680;i+=40)
         {
             if((int)(Math.random()*5)<=2)
             {

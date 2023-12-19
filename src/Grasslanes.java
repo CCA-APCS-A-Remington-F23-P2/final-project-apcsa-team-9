@@ -2,6 +2,8 @@ import java.util.*;
 import java.awt.*;
 public class Grasslanes {
     private ArrayList<Grasslane> grasslanes;
+    private BlankLane b1;
+    private BlankLane b2;
 
     public Grasslanes(ArrayList<Integer> yPosWithoutRoad)
     {
@@ -14,7 +16,8 @@ public class Grasslanes {
         {
             grasslanes.get(i).generateObstacles();
         }
-        BlankLane b = new BlankLane(0, 725);
+        b1 = new BlankLane(0, 720);
+        b2 = new BlankLane(0, 0);
     }
 
     public void addGrasslane(Grasslane r)
@@ -48,6 +51,8 @@ public class Grasslanes {
             Grasslane r=grasslanes.get(i);
             r.draw(window);
         }
+        b1.draw(window);
+        b2.draw(window);
     }
 }
 

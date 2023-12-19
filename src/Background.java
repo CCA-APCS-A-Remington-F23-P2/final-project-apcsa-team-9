@@ -30,7 +30,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     score=0;
     highestScore=0;
 
-    chicken = new Chicken(285, 645, 30, 30, 40);
+    chicken = new Chicken(285, 725, 30, 30, 40);
     roads=new Roads();
     System.out.println(roads.getyPosWithoutRoad());
     System.out.println(roads.getyPosWithRoad());
@@ -127,7 +127,7 @@ public class Background extends Canvas implements KeyListener, Runnable
   public void reset()
   {
     setBackground(Color.BLUE);
-    chicken = new Chicken(285, 645, 30, 30, 40);
+    chicken = new Chicken(285, 725, 30, 30, 40);
     roads=new Roads();
     grasslanes=new Grasslanes(roads.getyPosWithoutRoad());
     roads.generateCars();
