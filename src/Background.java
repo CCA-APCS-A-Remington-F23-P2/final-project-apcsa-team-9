@@ -34,7 +34,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     roads=new Roads();
     System.out.println(roads.getyPosWithoutRoad());
     System.out.println(roads.getyPosWithRoad());
-    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
+    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,20,30);
     grasslanes=new Grasslanes(roads.getyPosWithoutRoad());
     roads.generateCars();
 
@@ -64,7 +64,6 @@ public class Background extends Canvas implements KeyListener, Runnable
     //create a graphics reference to the back ground image
     //we will draw all changes on the background image
     Graphics graphToBack = back.createGraphics();
-     
 
     if (keys[0] && chicken.moveIsLegal(grasslanes, "LEFT")) {
       chicken.move("LEFT");
@@ -89,11 +88,9 @@ public class Background extends Canvas implements KeyListener, Runnable
       keys[4]=false;
     }
     
-
-    //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-    //bullets hit alien
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0,0,600,800);
+
     if(gamePaused)
     {
       if(score>highestScore) highestScore=score;
@@ -121,6 +118,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     coin.draw(graphToBack);
     grasslanes.draw(graphToBack);
     chicken.draw(graphToBack);
+    displayScore(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
@@ -134,30 +132,14 @@ public class Background extends Canvas implements KeyListener, Runnable
     setVisible(true);
     gamePaused=false;
     score=0;
-    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
+    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,20,30);
   }
 
-  public void displayScore(Graphics window, int x, int y)
-  {
-    window.setFont(new Font("TAHOMA",Font.BOLD,24));
-    window.clearRect(x,y-40,200,80);
-    window.setColor(Color.WHITE);
-    // window.drawString("Score: "+score, x, y);
-  }
-  public void displayLives(Graphics window, int x, int y)
-  {
-    window.setFont(new Font("TAHOMA",Font.BOLD,24));
-    window.clearRect(x,y-40,200,80);
-    window.setColor(Color.WHITE);
-    // window.drawString("Lives: "+lives, x, y);
-  }
-
-  public void displayLifeLostScreen(Graphics window)
-  {
+  public void displayScore(Graphics window) {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
-    window.clearRect(0,0,800,600);
-    window.setColor(Color.WHITE);
-    // window.drawString("you lost a life!"+" lives remaining: "+lives+"\n press r to resume", 400, 300);
+    //window.clearRect(0,0,600,800);
+    window.setColor(Color.BLACK);
+    window.drawString("Score: " + score, 10, 20);
   }
 
   public void displayGameLostScreen(Graphics window)
@@ -175,7 +157,6 @@ public class Background extends Canvas implements KeyListener, Runnable
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     window.clearRect(0,0,800,600);
     window.setColor(Color.WHITE);
-    // window.drawString("you won!! your final score was: "+score,400,300);
   }
   public void keyPressed(KeyEvent e)
   {

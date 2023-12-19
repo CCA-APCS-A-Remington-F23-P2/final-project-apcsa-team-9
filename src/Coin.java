@@ -13,7 +13,7 @@ public class Coin extends MovingThing {
         try
         {
             //broken link
-          URL altUrl=new URL("https://th.bing.com/th/id/OIP.-doJo0WzUtn2zU5Z9mGXxAHaHa?rs=1&pid=ImgDetMain");
+          URL altUrl=new URL("https://static.wikia.nocookie.net/disneycrossyroad/images/8/8f/IMG_3190.png/revision/latest?cb=20170825201231");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
