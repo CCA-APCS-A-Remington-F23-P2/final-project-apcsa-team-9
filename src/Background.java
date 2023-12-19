@@ -17,6 +17,9 @@ public class Background extends Canvas implements KeyListener, Runnable
   private Roads roads;
   private Grasslanes grasslanes;
   private boolean gamePaused=false;
+  private Coin coin;
+  private int score;
+  private int highestScore;
   //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
@@ -24,10 +27,14 @@ public class Background extends Canvas implements KeyListener, Runnable
     setBackground(Color.BLUE);
 
     keys = new boolean[5];
+    score=0;
+    highestScore=0;
 
-    chicken = new Chicken(285, 765-80-120, 30, 30, 40);
+    chicken = new Chicken(285, 645, 30, 30, 40);
     roads=new Roads();
     System.out.println(roads.getyPosWithoutRoad());
+    System.out.println(roads.getyPosWithRoad());
+    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
     grasslanes=new Grasslanes(roads.getyPosWithoutRoad());
     roads.generateCars();
 
@@ -89,6 +96,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,600,800);
     if(gamePaused)
     {
+      if(score>highestScore) highestScore=score;
       displayGameLostScreen(graphToBack);
       twoDGraph.drawImage(back, null, 0, 0);
       return;
@@ -101,9 +109,16 @@ public class Background extends Canvas implements KeyListener, Runnable
         gamePaused=true;
       }
     }
+
+    if(chicken.didCollide(coin))
+    {
+      score++;
+      coin.moveToNewLocation(roads.getyPosWithRoad());
+    }
     
     roads.cleanUpEdges();
     roads.draw(graphToBack);
+    coin.draw(graphToBack);
     grasslanes.draw(graphToBack);
     chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
@@ -112,12 +127,14 @@ public class Background extends Canvas implements KeyListener, Runnable
   public void reset()
   {
     setBackground(Color.BLUE);
-    chicken = new Chicken(285, 765-80-120, 30, 30, 40);
+    chicken = new Chicken(285, 645, 30, 30, 40);
     roads=new Roads();
     grasslanes=new Grasslanes(roads.getyPosWithoutRoad());
     roads.generateCars();
     setVisible(true);
     gamePaused=false;
+    score=0;
+    coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
   }
 
   public void displayScore(Graphics window, int x, int y)
@@ -148,7 +165,9 @@ public class Background extends Canvas implements KeyListener, Runnable
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     window.clearRect(0,0,600,800);
     window.setColor(Color.WHITE);
-    window.drawString("you lost!! your final score was: //100",200,300);
+    window.drawString("you lost!! your final score was: "+score,200,300);
+    window.drawString("press r to restart",200,400);
+    window.drawString("session high score: "+highestScore,200,500);
   }
 
   public void displayGameWonScreen(Graphics window)
