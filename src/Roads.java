@@ -33,6 +33,14 @@ public class Roads {
         }
     }
 
+    public void incRoadSpeed() {
+        for (Road r : roads ) {
+           for (Car c : r.getCars()) {
+            c.setSpeed(1 + c.getSpeed());
+           }
+        }
+    }
+
     public ArrayList<Integer> getyPosWithRoad()
     {
         return yPosWithRoad;
