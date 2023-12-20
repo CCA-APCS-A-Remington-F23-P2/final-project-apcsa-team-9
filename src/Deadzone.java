@@ -14,7 +14,7 @@ public class Deadzone extends MovingThing {
         try
         {
             //broken link
-          URL altUrl=new URL("https://i.pinimg.com/originals/69/3f/82/693f82478eeafa5a6273a41c0636ec8b.png");
+          URL altUrl=new URL("https://www.pngall.com/wp-content/uploads/5/Red-X-Letter-PNG-Clipart.png");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
@@ -29,7 +29,7 @@ public class Deadzone extends MovingThing {
         try
         {
             //broken link
-          URL altUrl=new URL("https://i.pinimg.com/originals/69/3f/82/693f82478eeafa5a6273a41c0636ec8b.png");
+          URL altUrl=new URL("https://www.pngall.com/wp-content/uploads/5/Red-X-Letter-PNG-Clipart.png");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
