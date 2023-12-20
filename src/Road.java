@@ -152,8 +152,15 @@ public class Road extends Rectangle{
         window.fillRect(getX(), getY(), getWidth(), getHeight());
         for(Car c:cars)
         {
-            c.move(drivingDirection);
             c.draw(window);
         }
+    }
+
+    public void move()
+    {
+       for(Car c:cars)
+        {
+            c.move(drivingDirection);
+        } 
     }
 }

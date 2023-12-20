@@ -20,14 +20,20 @@ public class Background extends Canvas implements KeyListener, Runnable
   private Coin coin;
   private int score;
   private int highestScore;
+  private FreezePowerup[] powerups;
+  private int freezeTimer;
+  private boolean isFrozen;
   //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
   {
     setBackground(Color.BLUE);
 
+    isFrozen=false;
+    freezeTimer=0;
     keys = new boolean[5];
     score=0;
+    powerups=new FreezePowerup[2];
     highestScore=0;
 
     chicken = new Chicken(285, 725, 30, 30, 40);
@@ -35,6 +41,12 @@ public class Background extends Canvas implements KeyListener, Runnable
     System.out.println(roads.getyPosWithoutRoad());
     System.out.println(roads.getyPosWithRoad());
     coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
+    for(int i=0;i<powerups.length;i++)
+    {
+      powerups[i]=new FreezePowerup();
+      powerups[i].moveToNewLocation(roads.getyPosWithRoad());
+    }
+
     grasslanes=new Grasslanes(roads.getyPosWithoutRoad());
     roads.generateCars();
 
@@ -116,9 +128,32 @@ public class Background extends Canvas implements KeyListener, Runnable
       coin.moveToNewLocation(roads.getyPosWithRoad());
     }
     
+    for(int i=0;i<powerups.length;i++)
+    {
+      if(chicken.didCollide(powerups[i]))
+      {
+        isFrozen=true;
+        freezeTimer=0;
+        powerups[i].moveToNewLocation(roads.getyPosWithRoad());
+      }
+    }
+
+    if(isFrozen) freezeTimer++;
+    if(freezeTimer>100)
+    {
+      isFrozen=false;
+      freezeTimer=0;
+    }
+
+    
     roads.cleanUpEdges();
+    if(!isFrozen) roads.move();
     roads.draw(graphToBack);
     coin.draw(graphToBack);
+    for(int i=0;i<powerups.length;i++)
+    {
+      powerups[i].draw(graphToBack);
+    }
     grasslanes.draw(graphToBack);
     chicken.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
@@ -135,6 +170,16 @@ public class Background extends Canvas implements KeyListener, Runnable
     gamePaused=false;
     score=0;
     coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,30,30);
+    powerups=new FreezePowerup[2];
+    for(int i=0;i<powerups.length;i++)
+    {
+      powerups[i]=new FreezePowerup();
+      powerups[i].moveToNewLocation(roads.getyPosWithRoad());
+    }
+    isFrozen=false;
+    freezeTimer=0;
+
+    
   }
 
   public void displayScore(Graphics window, int x, int y)

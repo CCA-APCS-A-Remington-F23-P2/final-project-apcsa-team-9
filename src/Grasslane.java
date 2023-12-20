@@ -32,7 +32,7 @@ public class Grasslane extends Rectangle{
         for(int i=0;i<520;i+=40)
         {
             boolean obstacleHere=false;
-            if((int)(Math.random()*100)<=34) obstacleHere=true;
+            if((int)(Math.random()*100)<=29) obstacleHere=true;
             if(obstacleHere)
             {
                 if((int)(Math.random()*2)==0) obstacles.add(new Rock(i+5,getY()+5,30,30));

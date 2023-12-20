@@ -85,6 +85,15 @@ public class Roads {
         }
     }
 
+    public void move()
+    {
+        for(int i=0;i<roads.size();i++)
+        {
+            Road r=roads.get(i);
+            r.move();
+        }
+    }
+
 
 
 }
