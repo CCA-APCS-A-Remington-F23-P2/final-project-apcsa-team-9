@@ -102,7 +102,8 @@ public class Background extends Canvas implements KeyListener, Runnable
     
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0,0,600,800);
-
+    
+    //death screen
     if(gamePaused)
     {
       if(score>highestScore) highestScore=score;
@@ -110,21 +111,22 @@ public class Background extends Canvas implements KeyListener, Runnable
       twoDGraph.drawImage(back, null, 0, 0);
       return;
     }
-
+    
+    //check to see if chicken got hit by any cars, if so then game over
     for (int i = 0; i < roads.getList().size(); i++) {
       if (roads.getList().get(i).carCollides(chicken)) {
-        //ADD IN THE YOU DIE SCREEN CUZ U DO
         displayGameLostScreen(graphToBack);
         gamePaused=true;
       }
     }
-
+    //see if chicken collected any coins
     if(chicken.didCollide(coin))
     {
       score++;
       coin.moveToNewLocation(roads.getyPosWithRoad());
     }
     
+    //test to see if chicken collected any powerups
     for(int i=0;i<powerups.length;i++)
     {
       if(chicken.didCollide(powerups[i]))
@@ -136,13 +138,15 @@ public class Background extends Canvas implements KeyListener, Runnable
     }
 
     if(isFrozen) freezeTimer++;
-    if(freezeTimer>100)
+    //freeze for 105 ticks/1.79 seconds
+    if(freezeTimer>105)
     {
       isFrozen=false;
       freezeTimer=0;
     }
 
     
+    //update everything in between frames
     roads.cleanUpEdges();
     if(!isFrozen) roads.move();
     roads.draw(graphToBack);
@@ -157,6 +161,8 @@ public class Background extends Canvas implements KeyListener, Runnable
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
+
+  //resets the game
   public void reset()
   {
     setBackground(Color.BLUE);
@@ -197,12 +203,6 @@ public class Background extends Canvas implements KeyListener, Runnable
     window.drawString("session high score: "+highestScore,200,500);
   }
 
-  public void displayGameWonScreen(Graphics window)
-  {
-    window.setFont(new Font("TAHOMA",Font.BOLD,12));
-    window.clearRect(0,0,800,600);
-    window.setColor(Color.WHITE);
-  }
   public void keyPressed(KeyEvent e)
   {
     if (e.getKeyCode() == KeyEvent.VK_LEFT)
