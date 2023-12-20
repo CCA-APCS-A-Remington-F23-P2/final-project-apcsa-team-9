@@ -35,7 +35,7 @@ public class Background extends Canvas implements KeyListener, Runnable
 
     deadzones=new Deadzone[7];
     deadzoneTimer=0;
-    health=5;
+    health=3;
     isFrozen=false;
     freezeTimer=0;
     keys = new boolean[5];
@@ -229,7 +229,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     powerups=new FreezePowerup[2];
     deadzones=new Deadzone[7];
     deadzoneTimer=0;
-    health=5;
+    health=3;
     for(int i=0;i<deadzones.length;i++)
     {
       deadzones[i]=new Deadzone();
