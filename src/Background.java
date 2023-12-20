@@ -21,14 +21,20 @@ public class Background extends Canvas implements KeyListener, Runnable
   private int score;
   private int highestScore;
   private FreezePowerup[] powerups;
+  private Deadzone[] deadzones;
+  private int health;
   private int freezeTimer;
   private boolean isFrozen;
+  private int deadzoneTimer;
   //^^ Incorporate the roads and draw them on the screen later
   
   public Background()
   {
     setBackground(Color.BLUE);
 
+    deadzones=new Deadzone[7];
+    deadzoneTimer=0;
+    health=5;
     isFrozen=false;
     freezeTimer=0;
     keys = new boolean[5];
@@ -41,6 +47,11 @@ public class Background extends Canvas implements KeyListener, Runnable
     System.out.println(roads.getyPosWithoutRoad());
     System.out.println(roads.getyPosWithRoad());
     coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,20,30);
+    for(int i=0;i<deadzones.length;i++)
+    {
+      deadzones[i]=new Deadzone();
+      deadzones[i].moveToNewLocation(roads.getyPosWithRoad());
+    }
     for(int i=0;i<powerups.length;i++)
     {
       powerups[i]=new FreezePowerup();
@@ -119,6 +130,12 @@ public class Background extends Canvas implements KeyListener, Runnable
         gamePaused=true;
       }
     }
+
+    if(health==0)
+    {
+      displayGameLostScreen(graphToBack);
+      gamePaused=true;
+    }
     //see if chicken collected any coins
     if(chicken.didCollide(coin))
     {
@@ -136,28 +153,54 @@ public class Background extends Canvas implements KeyListener, Runnable
         powerups[i].moveToNewLocation(roads.getyPosWithRoad());
       }
     }
+    
+    //test to see if chicken hit a deadzone, decrement health
+    for(int i=0;i<deadzones.length;i++)
+    {
+      if(chicken.didCollide(deadzones[i]))
+      {
+        health--;
+        deadzones[i].moveToNewLocation(roads.getyPosWithRoad());
+      }
+    }
 
-    if(isFrozen) freezeTimer++;
+    if(isFrozen)
+    {
+      freezeTimer++;
+    } 
     //freeze for 105 ticks/1.79 seconds
     if(freezeTimer>105)
     {
       isFrozen=false;
       freezeTimer=0;
     }
+    if(deadzoneTimer>600)
+    {
+      for(int i=0;i<deadzones.length;i++)
+      {
+        deadzones[i].moveToNewLocation(roads.getyPosWithRoad());
+      }
+      deadzoneTimer=0;
+    }
 
     
     //update everything in between frames
+    deadzoneTimer++;
     roads.cleanUpEdges();
     if(!isFrozen) roads.move();
     roads.draw(graphToBack);
     coin.draw(graphToBack);
+    for(int i=0;i<deadzones.length;i++)
+    {
+      deadzones[i].draw(graphToBack);
+    }
     for(int i=0;i<powerups.length;i++)
     {
       powerups[i].draw(graphToBack);
     }
     grasslanes.draw(graphToBack);
     chicken.draw(graphToBack);
-    displayScore(graphToBack);
+    displayScoreAndHealth(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
@@ -175,6 +218,14 @@ public class Background extends Canvas implements KeyListener, Runnable
     score=0;
     coin=new Coin(205,roads.getyPosWithRoad().get(0)+5,20,30);
     powerups=new FreezePowerup[2];
+    deadzones=new Deadzone[7];
+    deadzoneTimer=0;
+    health=5;
+    for(int i=0;i<deadzones.length;i++)
+    {
+      deadzones[i]=new Deadzone();
+      deadzones[i].moveToNewLocation(roads.getyPosWithRoad());
+    }
     for(int i=0;i<powerups.length;i++)
     {
       powerups[i]=new FreezePowerup();
@@ -186,11 +237,12 @@ public class Background extends Canvas implements KeyListener, Runnable
     
   }
 
-  public void displayScore(Graphics window) {
+  public void displayScoreAndHealth(Graphics window) {
     window.setFont(new Font("TAHOMA",Font.BOLD,12));
     //window.clearRect(0,0,600,800);
     window.setColor(Color.BLACK);
     window.drawString("Score: " + score, 10, 20);
+    window.drawString("Health: "+health,100,20);
   }
 
   public void displayGameLostScreen(Graphics window)
