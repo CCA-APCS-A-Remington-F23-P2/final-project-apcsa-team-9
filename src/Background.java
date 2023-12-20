@@ -33,7 +33,7 @@ public class Background extends Canvas implements KeyListener, Runnable
   {
     setBackground(Color.BLUE);
 
-    deadzones=new Deadzone[7];
+    deadzones=new Deadzone[3];
     deadzoneTimer=0;
     health=5;
     isFrozen=false;

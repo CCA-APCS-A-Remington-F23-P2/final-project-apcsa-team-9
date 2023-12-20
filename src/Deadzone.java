@@ -14,7 +14,7 @@ public class Deadzone extends MovingThing {
         try
         {
             //broken link
-          URL altUrl=new URL("https://th.bing.com/th/id/OIP.COygL7yNN72_zXES4NQp0AHaHa?rs=1&pid=ImgDetMain");
+          URL altUrl=new URL("https://i.pinimg.com/originals/69/3f/82/693f82478eeafa5a6273a41c0636ec8b.png");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
@@ -29,7 +29,7 @@ public class Deadzone extends MovingThing {
         try
         {
             //broken link
-          URL altUrl=new URL("https://th.bing.com/th/id/OIP.COygL7yNN72_zXES4NQp0AHaHa?rs=1&pid=ImgDetMain");
+          URL altUrl=new URL("https://i.pinimg.com/originals/69/3f/82/693f82478eeafa5a6273a41c0636ec8b.png");
           image  = ImageIO.read(altUrl);
         }
         catch (Exception e)
