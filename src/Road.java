@@ -47,6 +47,10 @@ public class Road extends Rectangle{
         color = col;
     }
     
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
     //generates a random RGB color
     public static Color randomColor()
     {

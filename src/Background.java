@@ -25,6 +25,7 @@ public class Background extends Canvas implements KeyListener, Runnable
   private int health;
   private int freezeTimer;
   private boolean isFrozen;
+  private boolean needToIncSpeed;
   private int deadzoneTimer;
   //^^ Incorporate the roads and draw them on the screen later
   
@@ -41,6 +42,7 @@ public class Background extends Canvas implements KeyListener, Runnable
     score=0;
     powerups=new FreezePowerup[2];
     highestScore=0;
+    needToIncSpeed = false;
 
     chicken = new Chicken(285, 725, 30, 30, 40);
     roads=new Roads();
@@ -141,6 +143,13 @@ public class Background extends Canvas implements KeyListener, Runnable
     {
       score++;
       coin.moveToNewLocation(roads.getyPosWithRoad());
+      if (score % 2 == 0 && score != 0) {
+        needToIncSpeed = true;
+      }
+      if (needToIncSpeed) {
+        roads.incRoadSpeed();
+        needToIncSpeed = false;
+      }
     }
     
     //test to see if chicken collected any powerups
